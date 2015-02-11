@@ -1,0 +1,16 @@
+/********* Get totals for all trans codes by date ************
+*  This was practice getting to know the MongoDB aggreagation framework. I have *  not mastered it by any means, but after a long day of feeling like an idiot
+*  progress was made.
+*   This query gets a total value for each transaction code for each day
+*  available.
+*/
+
+db.collection.aggregate({
+  $group: {
+    _id: {
+      TRAN_DATE: "$TRAN_DATE",
+      AP_TRAN_CODE: "$AP_TRAN_CODE"
+    },
+    totals: {$sum: "$TOTAL_COST"}
+    }}
+  );
